@@ -39,19 +39,30 @@ public class Constants {
         GIMATRIA_TRANSLATIONS.put(' ', 0);
     }
 
-    private static HashMap<String, Integer> nounToGimatria(String word) {
+    private static HashMap<Integer, ArrayList<String>> nounToGimatria(String word) {
 
         WordsToGimatria wordsToGimatria = new WordsToGimatria(word);
-        HashMap<String, Integer> map = new HashMap<>();
-        map.put(word, wordsToGimatria.getValue());
+        HashMap<Integer, ArrayList<String>> map = new HashMap<>();
+        ArrayList<String> wordArray = new ArrayList<>();
+        wordArray.add(word);
+        map.put(wordsToGimatria.getValue(), wordArray);
         return map;
     }
 
-    public static HashMap<String, Integer> getNounsToGimatria() {
+    private static boolean checkExist(HashMap<Integer, ArrayList<String>> map, int value) {
+        return map.get(value) == null;
+    }
+
+    public static HashMap<Integer, ArrayList<String>> getNounsToGimatria() {
         List<String> nouns = getNouns();
-        HashMap<String, Integer> map = new HashMap<>();
+        HashMap<Integer, ArrayList<String>> map = new HashMap<>();
         for (String noun : nouns) {
-            map.putAll(nounToGimatria(noun));
+            WordsToGimatria wordsToGimatria = new WordsToGimatria(noun);
+            if (checkExist(map, wordsToGimatria.getValue())) {
+                map.putAll(nounToGimatria(noun));
+            } else {
+                map.get(wordsToGimatria.getValue()).add(noun);
+            }
         }
         return map;
     }

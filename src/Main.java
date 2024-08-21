@@ -8,11 +8,12 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        GimatriaToWords gimatriaToWords = new GimatriaToWords(40);
+        GimatriaToWords gimatriaToWords = new GimatriaToWords(10);
         WordsToGimatria wordsToGimatria = new WordsToGimatria("Hאבא");
         System.out.println(wordsToGimatria.getValue());
-        System.out.println(gimatriaToWords.randMatchingWord());
+//        System.out.println(gimatriaToWords.randMatchingWord());
+//        System.out.println(Constants.getNounsToGimatria());
         System.out.println(gimatriaToWords.getGimatriaWords());
-
+        System.out.println(gimatriaToWords.randMatchingWord());
     }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 public class GimatriaToWords {
-    private int value;
+    private final int value;
 
     public GimatriaToWords(int v) {
         this.value = v;
@@ -15,14 +15,8 @@ public class GimatriaToWords {
     }
 
     public List<String> getGimatriaWords() {
-        HashMap<String, Integer> nounsGimatria = Constants.getNounsToGimatria();
-        List<String> matchWords = new ArrayList<>();
-        for (String word : nounsGimatria.keySet()) {
-            if (nounsGimatria.get(word) == this.value) {
-                matchWords.add(word);
-            }
-        }
-        return matchWords;
+        HashMap<Integer, ArrayList<String>> nounsGimatria = Constants.getNounsToGimatria();
+        return nounsGimatria.get(this.value);
 
     }
 
